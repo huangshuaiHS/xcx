@@ -23,6 +23,7 @@ Page({
   },
   address: function (){
       wx.navigateTo({url:"/pages/address/index"});
+      
   },
   
   order:function (){

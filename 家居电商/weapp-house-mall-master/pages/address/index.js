@@ -23,11 +23,12 @@ Page({
   getAllAddressList:function(){
         var that = this;
         var data = {appid:config.APPID,userid:this.data.userInfo.id};
-        http.httpGet("?c=user&a=getAddrList" ,data,function(res){
-            if(res.code == '200' && res.msg == 'success'){
-                that.setData({allAddress:res.data.list});
-            }
-        });
+        // http.httpGet("?c=user&a=getAddrList" ,data,function(res){
+        //     if(res.code == '200' && res.msg == 'success'){
+        //         that.setData({allAddress:res.data.list});
+        //     }
+        // });
+        
   },
   radioChange:function(e){
       console.log(e);
@@ -52,7 +53,19 @@ Page({
     //return false;
   },
   addrss:function (e){
-        wx.navigateTo({url:"/pages/address/addto/index?id="})
+        // wx.navigateTo({url:"/pages/address/addto/index?id="})
+        wx.chooseAddress({
+          success (res) {
+            console.log(res.userName)
+            console.log(res.postalCode)
+            console.log(res.provinceName)
+            console.log(res.cityName)
+            console.log(res.countyName)
+            console.log(res.detailInfo) 
+            console.log(res.nationalCode)
+            console.log(res.telNumber)
+          } 
+        })
   },
   addto:function (e){
         var id = e.currentTarget.dataset.id;
