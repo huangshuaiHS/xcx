@@ -1,0 +1,60 @@
+<view>
+  <view class="tab">
+    <view class="{{tab_index == 0 ? 'tab-active':''}}" data-index="0" catchtap="selectTab">1</view>
+    <view class="{{tab_index == 1 ? 'tab-active':''}}" data-index="1" catchtap="selectTab">2</view>
+    <view class="{{tab_index == 2 ? 'tab-active':''}}" data-index="2" catchtap="selectTab">3</view>
+  </view>
+ 
+  <swiper 
+    style="height: {{windowHeight - 50}}px"
+    bindchange="tabChange"
+    current="{{tab_index}}"
+  >
+    <swiper-item>
+      <scroll-view
+        style="height: 100%;"
+        scroll-y
+        bindscroll="scroll"
+        bindscrolltolower="reactBottom"
+        scroll-with-animation
+        scroll-top="{{scrollTop0}}px"
+      >
+        <block wx:for="{{30}}" wx:key="{{index}}">
+          <view class="item item1">{{index + 1}}</view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+ 
+    <swiper-item>
+      <scroll-view
+        style="height: 100%;"
+        scroll-y
+        bindscroll="scroll"
+        bindscrolltolower="reactBottom"
+        scroll-with-animation
+        scroll-top="{{scrollTop1}}px"
+      >
+        <block wx:for="{{30}}" wx:key="{{index}}">
+          <view class="item item2">{{index + 1}}</view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+ 
+    <swiper-item>
+      <scroll-view
+        style="height: 100%;"
+        scroll-y
+        bindscroll="scroll"
+        bindscrolltolower="reactBottom"
+        scroll-with-animation
+        scroll-top="{{scrollTop2}}px"
+      >
+        <block wx:for="{{30}}" wx:key="{{index}}">
+          <view class="item item3">{{index + 1}}</view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+  
+  <view class="backTop" catchtap="backTop"></view>
+</view>
