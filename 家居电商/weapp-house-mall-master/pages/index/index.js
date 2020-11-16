@@ -8,7 +8,7 @@ Page({
   data: {
     indicatorDots: false,//是否显示面板指示点
     autoplay: false,  //是否自动切换
-    current:0,      //当前所在index
+    current:0,      //当前所在index 
     interval:0, //自动切换时间
     duration: 200,  //滑动时间
     clas:["action"],
@@ -111,6 +111,8 @@ Page({
             IndexList:that.data.IndexList
           });
       })
+
+    
   },
   onShow:function(){
   
@@ -152,6 +154,8 @@ Page({
         //             typeof callback == "function" && callback(list)
         //         }
         // });
+       
+        
     
   },
   loadTabGoodsList:function(index){
@@ -163,13 +167,13 @@ Page({
               this.getGoodsList(type,'2',function(list){
                     var goods = that.data.goodsData;
                     goods[index].banner = list;
-                    //that.setData({goodsData:goods});
+                    that.setData({goodsData:goods});
               })
                //获取商品列表
               this.getGoodsList(type,'1,2',function(list){
                     var goods = that.data.goodsData;
                     goods[index].list = list;
-                    //that.setData({goodsData:goods});
+                    that.setData({goodsData:goods});
               })
             
         }
@@ -187,6 +191,10 @@ Page({
   xun:function (e){
       var index = e.target.dataset.index;
       this.setData({current:index});
+      this.setData({
+        bander:this.data.bander,
+        IndexList:this.data.IndexList
+      })
       //this.loadTabGoodsList(index);
   },
   todetail:function(e){

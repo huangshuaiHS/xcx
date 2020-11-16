@@ -41,6 +41,8 @@
                   <template is="msgItem" data="{{item}}"/>
             </swiper-item>
       </block>
+      
+      
 </swiper> 
 
 	

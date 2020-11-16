@@ -102,6 +102,7 @@ Page({
   settlement:function (){
     var that = this;
     //检查地址是否为空
+    console.log(this.data.address)
     if(this.data.address == ""){
         wx.showModal({
             title: '提示',
