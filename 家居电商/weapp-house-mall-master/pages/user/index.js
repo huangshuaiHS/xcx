@@ -11,37 +11,21 @@ Page({
   },
   onLoad: function () {
     var that = this
-    app.getUserInfo(function (userInfo){
-         that.setData({
-              userInfo:userInfo
-          });
-    })
-    wx.openSetting({
-      success (res) {
-        console.log(res.authSetting)
-        // res.authSetting = {
-        //   "scope.userInfo": true,
-        //   "scope.userLocation": true
-        // }
-        wx.getUserInfo({
-          success: function(res) {
-            console.log(res.userInfo) 
-          }
-        })
-      }
-    })
-    
-   
-   
+    // app.getUserInfo(function (userInfo){
+    //      that.setData({
+    //           userInfo:userInfo
+    //       });
+    // })
 
     wx.getSetting({
       success (res){
-        console.log(res)
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: function(res) {
-              console.log(res.userInfo) 
+                that.setData({
+                  userInfo:res.userInfo
+              });
             }
           })
         }
