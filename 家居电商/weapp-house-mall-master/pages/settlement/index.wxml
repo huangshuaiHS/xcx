@@ -20,7 +20,7 @@
     <block wx:for="{{allGoods}}">
       <view class="item">
         <text class="left">{{item.name}}(x{{item.buycount}})</text>
-        <text class="right">¥{{item.pay}}</text>
+        <text class="right">¥{{item.price}}</text>
       </view>
     </block>
     <view class="fot">

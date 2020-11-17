@@ -16,12 +16,12 @@
             <view class="banner">
                   <swiper indicator-dots="true" 
                   autoplay="true" interval="5000"  duration="1000" >
-                  <block wx:for="{{bander}}" wx:key="index">
-                        <swiper-item>
-                              <image mode="aspectFill" wx:if="{{item.cid != 0}}" src="{{item.image}}" bindtap="todetail" id="{{item.cid}}"/>
-                              <image mode="aspectFill" wx:else src="{{item.image}}" id="{{item.cid}}"/>
-                        </swiper-item>
-                  </block>
+                        <block wx:for="{{bander}}" wx:key="index">
+                              <swiper-item>
+                                    <image mode="aspectFill" wx:if="{{item.cid != 0}}" src="{{item.image}}" bindtap="todetail" id="{{item.cid}}"/>
+                                    <image mode="aspectFill" wx:else src="{{item.image}}" id="{{item.cid}}"/>
+                              </swiper-item>
+                        </block>
                   </swiper>
             </view>
             <view class="listMall">

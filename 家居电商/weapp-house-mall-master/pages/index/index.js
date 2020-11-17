@@ -231,7 +231,7 @@ Page({
           complete: function() {
             // complete
           }
-        })
+      })
   },
   //处理分页
   bindlower:function(e){

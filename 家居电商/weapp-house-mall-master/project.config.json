@@ -48,23 +48,29 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
+    "plugin": {
       "list": []
     },
     "game": {
-      "list": []
-    },
-    "plugin": {
       "list": []
     },
     "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "收货地址",
+          "pathName": "pages/address/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "获取本地地址",
+          "pathName": "pages/settlement/index",
+          "scene": null
+        }
+      ]
     }
   }
 }

@@ -22,13 +22,20 @@ Page({
   },
   getAllAddressList:function(){
         var that = this;
-        var data = {appid:config.APPID,userid:this.data.userInfo.id};
+        //var data = {appid:config.APPID,userid:this.data.userInfo.id};
         // http.httpGet("?c=user&a=getAddrList" ,data,function(res){
         //     if(res.code == '200' && res.msg == 'success'){
         //         that.setData({allAddress:res.data.list});
         //     }
         // });
-        
+        var allAddress = wx.getStorageSync('allAddress');//获取地址列表
+        if(allAddress === null || allAddress === ""){
+          return
+        }
+        that.setData({
+          allAddress
+        })
+        console.log(allAddress)
   },
   radioChange:function(e){
       console.log(e);
@@ -41,35 +48,63 @@ Page({
               allAddress[i].checked = false;
           }
       }*/
-      var data = {appid:config.APPID,userid:this.data.userInfo.id,id:id,isfirst:1}
-          http.httpGet("?c=user&a=editAddress" ,data,function(res){
-                 if(res.code == '200' && res.msg == 'success'){
-                        console.log("设置默认地址成功");
-                 }else{
-                        console.log("设置默认地址失败");
-                 }
-      });
+     // var data = {appid:config.APPID,userid:this.data.userInfo.id,id:id,isfirst:1}
+      //     http.httpGet("?c=user&a=editAddress" ,data,function(res){
+      //            if(res.code == '200' && res.msg == 'success'){
+      //                   console.log("设置默认地址成功");
+      //            }else{
+      //                   console.log("设置默认地址失败");
+      //            }
+      // });
       //this.setData({allAddress:allAddress});
     //return false;
   },
   addrss:function (e){
         // wx.navigateTo({url:"/pages/address/addto/index?id="})
+        var that = this;
+        //获取收获地址
         wx.chooseAddress({
           success (res) {
-            console.log(res.userName)
-            console.log(res.postalCode)
-            console.log(res.provinceName)
-            console.log(res.cityName)
-            console.log(res.countyName)
-            console.log(res.detailInfo) 
-            console.log(res.nationalCode)
-            console.log(res.telNumber)
+            var list = []
+            list = [{
+              id:res.telNumber,
+              isfirst:1,
+              address:res.provinceName+res.cityName+res.countyName+res.detailInfo,
+              username:res.userName,
+              telNumber:res.telNumber
+            }]
+            that.setData({
+                allAddress:list
+            })
+            wx.setStorageSync('allAddress', list)
+            // provinceName+cityName+countyName+detailInfo+" "+telNumber+userName
           } 
         })
   },
   addto:function (e){
-        var id = e.currentTarget.dataset.id;
-        console.log(id);
-        wx.navigateTo({url:"/pages/address/addto/index?id="+id})
+    var that = this;
+        // var id = e.currentTarget.dataset.id;
+        // console.log(id);
+        // wx.navigateTo({url:"/pages/address/addto/index?id="+id})
+        //获取收获地址
+        wx.chooseAddress({
+          success (res) {
+            var list = []
+            list = [{
+              id:res.telNumber,
+              isfirst:1,
+              address:res.provinceName+res.cityName+res.countyName+res.detailInfo,
+              username:res.userName,
+              telNumber:res.telNumber
+            }]
+            that.setData({
+                allAddress:list
+            })
+            wx.setStorageSync('allAddress', list)
+            // provinceName+cityName+countyName+detailInfo+" "+telNumber+userName
+          } 
+        })
+
+
   }
 })

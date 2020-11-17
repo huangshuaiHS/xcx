@@ -3,9 +3,10 @@
         <swiper class="swiper" indicator-dots="{{indicatorDots}}"
             autoplay="{{autoplay}}" interval="{{interval}}"  duration="{{duration}}" >
             <!-- <block wx:for="{{[1]}}" wx:key="index"> -->
-              <block wx:for="{{goods.thumb}}" wx:key="index">
+              <!-- <block wx:for="{{goods.thumb}}" wx:key="index"> -->
+              <block>
                 <swiper-item>
-                    <image mode="scaleToFill" src="{{item}}" />
+                    <image mode="thumb" src="{{goods.thumb}}" />
                 </swiper-item>
             </block>
         </swiper>
@@ -26,7 +27,7 @@
           <label id="add" bindtap="buyCount">+</label></view>
       </view>
       <view class="footer_btn">
-        <text id="add" bindtap="buyCount">加入购物车</text>
+        <text id="add" bindtap="gwc">加入购物车</text>
         <text bindtap="buyNow">立即购买</text>
       </view>
     </view>

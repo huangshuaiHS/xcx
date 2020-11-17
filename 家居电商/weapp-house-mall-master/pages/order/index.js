@@ -23,7 +23,7 @@ Page({
   },
   getlist:function(){
     var that = this;
-    var data = {appid:config.APPID,userid:this.data.userInfo.id/*,page:'',pageSize:'',order:'id'*/}
+    //var data = {appid:config.APPID,userid:this.data.userInfo.id/*,page:'',pageSize:'',order:'id'*/}
     // http.httpGet("?c=order&a=getOrderList" ,data,function(res){
     //         if(res.code == '200' && res.msg == 'success'){
     //              var orderList = res.data.list;
@@ -31,7 +31,7 @@ Page({
     //         }
     // });
     
-    that.setData({orderList:wx.getStorageSync("jdcg")});
+    that.setData({orderList:[wx.getStorageSync("ljgm")]});
   },
   pay:function(e){
 
@@ -57,7 +57,7 @@ Page({
   },
   updateOrderInfo:function(orderid,status){
             var that = this;
-            var data = {appid:config.APPID,userid:this.data.userInfo.id,status:status,id:orderid}
+            //var data = {appid:config.APPID,userid:this.data.userInfo.id,status:status,id:orderid}
             // http.httpGet("?c=order&a=updateOrder" ,data,function(res){
             //         if(res.code == '200' && res.msg == 'Edit success'){
             //             var orderList = that.data.orderList;

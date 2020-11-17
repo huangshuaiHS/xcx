@@ -20,23 +20,32 @@ Page({
         })
   },
   onShow:function (){
+    this.getDefaultAddress();
    sta();
     var allGoods =  wx.getStorageSync('shoppingcar');
+    var ljgm =  wx.getStorageSync('ljgm');
+    //判断是否是立即购买
+    if(ljgm != null && ljgm != ""){
+      //计算数量x单价=总价
+      var sumPrice = util.accMul(ljgm.price,ljgm.buycount);
+      this.setData({ allGoods:[ljgm], sumPrice:sumPrice });
+      return
+    }
     var sumPrice = 0;
     for(var i=0;i< allGoods.length;i++){
         var price = allGoods[i].price;
         var count =  allGoods[i].buycount;
         price = util.accMul(price,count);
-        allGoods[i].pay = price;
+        //allGoods[i].pay = price;
         sumPrice = util.accAdd(sumPrice,price);
     }
     this.setData({ allGoods:allGoods, sumPrice:sumPrice });
-    this.getDefaultAddress();
   },
+
   getDefaultAddress:function(){
         //获取地址
         var that = this;
-        var data = {appid:config.APPID,userid:this.data.userInfo.id};
+        //var data = {appid:config.APPID,userid:this.data.userInfo.id};
         // http.httpGet("?c=user&a=getAddrList" ,data,function(res){
         //     if(res.code == '200' && res.msg == 'success'){
         //         var allAddress = res.data.list;
@@ -53,10 +62,7 @@ Page({
         //         that.setData({address:address});
         //     }
         // });
-        var xx= wx.getStorageSync('shdz');
-        console.log(xx);
-        console.log("----------------------")
-        that.setData({address:wx.getStorageSync('shdz')});
+        that.setData({address:wx.getStorageSync('allAddress')[0]});
         
   },
   creatOrder:function(amount,discount,payamount,gid,number,addressid,callback){
@@ -97,12 +103,32 @@ Page({
         // })
   },
   toAddress:function(){
-      wx.navigateTo({url: '/pages/address/index'})
+    //   wx.navigateTo({url: '/pages/address/index'})
+    var that = this;
+        //获取收获地址
+        wx.chooseAddress({
+          success (res) {
+            var list = []
+            list = [{
+              id:res.telNumber,
+              isfirst:1,
+              address:res.provinceName+res.cityName+res.countyName+res.detailInfo,
+              username:res.userName,
+              telNumber:res.telNumber
+            }]
+            that.setData({
+                allAddress:list
+            })
+            wx.setStorageSync('allAddress', list)
+            // provinceName+cityName+countyName+detailInfo+" "+telNumber+userName
+          } 
+        })
   },
   settlement:function (){
+    //清除立即购买
+    wx.setStorageSync('ljgm','');
     var that = this;
     //检查地址是否为空
-    console.log(this.data.address)
     if(this.data.address == ""){
         wx.showModal({
             title: '提示',

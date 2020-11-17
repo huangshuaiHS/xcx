@@ -19,7 +19,7 @@ Page({
             userInfo:userInfo
           });
     })
-    var allAddress = wx.getStorageSync('address');
+    var allAddress = wx.getStorageSync('allAddress');
     var address = '';
     for(var i=0;i<allAddress.length;i++){
          if( allAddress[i].checked){
