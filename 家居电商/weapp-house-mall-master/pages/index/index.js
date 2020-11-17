@@ -6,6 +6,8 @@ var app = getApp()
 var sta = require("../../utils/statistics.js");
 Page({
   data: {
+    currentTab: 0,
+    
     indicatorDots: false,//是否显示面板指示点
     autoplay: false,  //是否自动切换
     current:0,      //当前所在index 
@@ -86,33 +88,11 @@ Page({
     ]
   },
   onLoad:function(){
-   
-   
-    // wx.getLocation({
-    //   type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-    //   success (res) {
-    //     const latitude = res.latitude
-    //     const longitude = res.longitude
-    //     wx.openLocation({
-    //       latitude,
-    //       longitude,
-    //       scale: 18,
-    //       name:"重庆市",   
-    //       address:"要把钱",
-    //       success(res){
-    //         console.log(res)
-    //       }
-    //     })
-    //   } 
-    //  })
 
 
 
       var that = this;
-      app.getUserInfo(function(userInfo){
-          that.setData({userInfo:userInfo});
-          that.getGoodsType();
-      })
+      
       //  http.httpGet("?c=banner&a=getBanner",{
       //   appid:config.APPID,
       // },function (res){
@@ -149,7 +129,7 @@ Page({
   },
   getGoodsType:function(){
         var that = this;
-        var data = {appid:config.APPID,userid:this.data.userInfo.id}
+        //var data = {appid:config.APPID,userid:this.data.userInfo.id}
         // http.httpGet("?c=type&a=getTypeList" ,data,function(res){
         //     if(res.code == '200' && res.msg == 'success'){
         //         var list = res.data.list;
@@ -165,7 +145,7 @@ Page({
   },
   getGoodsList:function(type,status,callback){
         var that = this;
-        var data = {appid:config.APPID,typeid:type,status:status}
+        //var data = {appid:config.APPID,typeid:type,status:status}
         if(status != '' || status != 0){
             //data.status = status;
         }
@@ -184,8 +164,9 @@ Page({
         var goodsData = that.data.goodsData;
         if(goodsData[index].banner == undefined || goodsData[index].list ==undefined){
               var type = goodsData[index].type; 
+              
               //获取推荐商品
-              this.getGoodsList(type,'2',function(list){
+              this.getGoodsList(type,'2',function(list){                
                     var goods = that.data.goodsData;
                     goods[index].banner = list;
                     that.setData({goodsData:goods});
@@ -202,20 +183,49 @@ Page({
   },
   //事件处理函数
   switchs: function(e) {
-    var index = e.detail.current;
-    this.loadTabGoodsList(index);
-    this.setData({clas:[]});
-    var data = [];
-    data[index] = "action";
-    this.setData({clas:data});
-  },
-  xun:function (e){
-      var index = e.target.dataset.index;
-      this.setData({current:index});
-      this.setData({
+    console.log(e);
+    
+     this.setData({
         bander:this.data.bander,
         IndexList:this.data.IndexList
       })
+     var index = e.detail.current;
+    // this.loadTabGoodsList(index);
+     this.setData({clas:[]});
+     var data = [];
+    data[index] = "action";
+    this.setData({clas:data});
+  },
+
+  bindChange: function( e ) {
+
+    var that = this;
+    //that.setData( { currentTab: e.detail.current });
+
+},
+
+  //  tab切换逻辑
+  swichNav: function( e ) {
+
+    var that = this;
+    console.log(this.data.currentTab +" === " +e.target.dataset.current);
+    
+    if( this.data.currentTab === e.target.dataset.current ) {
+        return false;
+    } else {
+        that.setData( {
+            currentTab: e.target.dataset.current
+        })
+    }
+    
+    console.log(e.target.dataset.current);
+    
+  },
+  xun:function (e){
+    console.log(e)
+      var index = e.target.dataset.current;
+      this.setData({current:index});
+     
       //this.loadTabGoodsList(index);
   },
   todetail:function(e){

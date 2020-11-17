@@ -68,3 +68,33 @@ swiper-item image{
   font-size: 30rpx;
 }
 
+
+.swiper-tab {
+  background: #fff;
+  padding:0 10px;
+  width: 100%;
+  text-align: center;
+  line-height: 40px;
+}
+
+.swiper-tab-list {  
+font-size: 30rpx;
+  display: inline-block;
+  width: 33.33%;
+  color: #777777;
+}
+
+.on { 
+color: #F5B223;
+  border-bottom: 2px solid #F5B223;
+}
+
+.swiper-box { 
+display: block; 
+height: 100%; 
+width: 100%; 
+overflow: hidden; 
+}
+
+
+

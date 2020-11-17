@@ -163,21 +163,23 @@
 .footer{
   background: #fff;
   position: absolute;
-  border-top:1px solid #eee;
+  border-top:2px solid #eee;
   left:0;
   right:0;
   bottom: 0;
-  height: 40px;
+  height: 103rpx;
+  
 }
 .footer .right{
   float: right;
+  height: 100rpx;
 }
 .footer .left{
   float: left;
 }
 .footer .left {
   line-height: 40px;
-  font-size: 14px;
+  font-size: 20px;
   padding-left:15px;
   color:#666;
 }
@@ -186,10 +188,10 @@
   padding-left:5px;
 }
 .footer .right button{
-  height: 40px;
+  height: 100rpx;
   background: #F5B223;
   border:none;
   border-radius: 0;
   color:#fff;
-  padding:0 40px;
+  padding:0 50px;
 }
