@@ -1,4 +1,9 @@
-<view class="user-head">
+
+
+<view class="button-sp-area" wx:if="{{dengl}}">
+    <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="userInfoHandler"> 授权登录 </button>
+</view>
+<view class="user-head" wx:if="{{!dengl}}">
     <view class="center" bindtap = "userdata">
         <view class="user-img">
             <image src="{{userInfo.avatarUrl}}"/>

@@ -13,11 +13,13 @@ Page({
   },
   onLoad: function () {
         var that = this;
-        app.getUserInfo(function (userInfo){
-            that.setData({
-                  userInfo:userInfo
-              });
-        })
+        // app.getUserInfo(function (userInfo){
+        //   console.log(userInfo)
+        //     that.setData({
+        //           userInfo:userInfo
+        //       });
+        // })
+        
   },
   onShow:function (){
     this.getDefaultAddress();
@@ -66,7 +68,7 @@ Page({
         
   },
   creatOrder:function(amount,discount,payamount,gid,number,addressid,callback){
-        var data ={appid:config.APPID,userid:this.data.userInfo.id,
+        var data ={appid:config.APPID,userid:this.data.userInfo.nickName,
                         amount:amount,
                         discount:discount,
                         payamount:payamount,
@@ -84,8 +86,7 @@ Page({
         //          typeof callback == "function" && callback('')
         //     }  
         // })
-        wx.setStorageSync('jdcg',data);
-        typeof callback == "function" && callback("成功成功了")
+        console.log(data)
   },
   payOrderSuccess:function(orderid,status,callback){
         var data = {appid:config.APPID,userid:this.data.userInfo.id,
@@ -108,8 +109,7 @@ Page({
         //获取收获地址
         wx.chooseAddress({
           success (res) {
-            var list = []
-            list = [{
+            var list = [{
               id:res.telNumber,
               isfirst:1,
               address:res.provinceName+res.cityName+res.countyName+res.detailInfo,
@@ -117,33 +117,55 @@ Page({
               telNumber:res.telNumber
             }]
             that.setData({
-                allAddress:list
+              address:list
             })
             wx.setStorageSync('allAddress', list)
             // provinceName+cityName+countyName+detailInfo+" "+telNumber+userName
           } 
         })
   },
+
+  
   settlement:function (){
-    //清除立即购买
-    wx.setStorageSync('ljgm','');
+    
     var that = this;
+     
+    
+    //判断用户是否登录
+      wx.getUserInfo({
+        success: function(res) {
+          that.setData({
+            userInfo:res.userInfo
+        });
+        }
+      })
     //检查地址是否为空
-    if(this.data.address == ""){
+    if(this.data.address == "" || this.data.address == null){
         wx.showModal({
             title: '提示',
             content: '请您先添加邮寄地址！',
             success: function(res) {
               if (res.confirm) {
                   that.toAddress();
-              }
-              return;
+              } 
             }
         })
+        return;
     }
+    setTimeout(function () {
+        
+      if(that.data.userInfo == null){
+        wx.showToast({
+          title: '请您先登陆',
+          icon: 'none',
+          duration: 1500
+      })
+      return;
+    }
+    
     //继续生成订单
-    var addressid = this.data.address.id;
-    var allGoods = this.data.allGoods;
+    var addressid = that.data.address.id;
+    var allGoods = that.data.allGoods;
     var gid = '',  number ='';
     allGoods.forEach(function(goods){
          if(gid == ''){
@@ -159,7 +181,7 @@ Page({
             icon: 'loading',
             duration: 1000
             });*/
-    this.creatOrder(this.data.sumPrice/*amount*/,this.data.sumPrice/*discount*/,0/*payamount*/,gid,number,addressid,
+            that.creatOrder(that.data.sumPrice/*amount*/,that.data.sumPrice/*discount*/,0/*payamount*/,gid,number,addressid,
         function(orderid){
            if(orderid != ''){
                 try{
@@ -176,8 +198,20 @@ Page({
                     duration: 1000
                 });*/
                 //此处写支付
-               
+              
            }
     });
+    wx.showToast({
+      title: '请等待...',
+      icon: 'loading',
+      duration: 1500
+      });
+    console.log("------------------")
+    //清除立即购买
+    wx.setStorageSync('ljgm','');
+
+
+    }, 500) //延迟时间 这里是1秒
+    
   }
 })

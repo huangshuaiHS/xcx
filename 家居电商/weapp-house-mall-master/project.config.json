@@ -68,6 +68,12 @@
         {
           "name": "获取本地地址",
           "pathName": "pages/settlement/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "个人中心",
+          "pathName": "pages/user/index",
           "scene": null
         }
       ]

@@ -72,13 +72,13 @@ Page({
         price:"7"
       },
       {
-        id:"6",
+        id:"7",
         thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2372429943,1502293666&fm=11&gp=0.jpg",
         title:"芒果",
         price:"12"
       },
       {
-        id:"6",
+        id:"8",
         thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=139113860,127951727&fm=26&gp=0.jpg",
         title:"柠檬",
         price:"8"

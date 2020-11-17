@@ -50,13 +50,13 @@ Page({
           price:"7"
         },
         {
-          id:"6",
+          id:"7",
           thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2372429943,1502293666&fm=11&gp=0.jpg",
           title:"芒果",
           price:"12"
         },
         {
-          id:"6",
+          id:"8",
           thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=139113860,127951727&fm=26&gp=0.jpg",
           title:"柠檬",
           price:"8"
@@ -130,7 +130,7 @@ Page({
               allGoods.push(goods);
               wx.setStorageSync('shoppingcar', allGoods);
               wx.showToast({
-                title: '操作成功！',  // 标题
+                title: '成功加入购物车',  // 标题
                 icon: 'success',   // 图标类型，默认success
                 duration: 1000   // 提示窗停留时间，默认1500ms
             })
@@ -167,6 +167,7 @@ Page({
                 // }
                 // goods.buycount = goods.buycount + hasCount;
                 // allGoods.push(goods);
+                //获取立即购买的数据  这儿不要购物车里的数据
                 wx.setStorageSync('ljgm', goods);
           }catch(m){
                 console.log('立即购买失败!');
