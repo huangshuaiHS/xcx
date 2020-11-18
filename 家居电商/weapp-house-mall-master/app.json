@@ -1,7 +1,7 @@
 {
   "pages": [
-    
     "pages/index/index",
+    "pages/classify/index",
     "pages/detail/index",
     "pages/shoppingcar/index",
     "pages/user/index",
@@ -32,6 +32,12 @@
         "text": "商品推荐",
         "iconPath": "images/dianpu.png",
         "selectedIconPath": "images/dianpu_s.png"
+      },
+      {
+        "pagePath": "pages/classify/index",
+        "text": "商品分类",
+        "iconPath": "images/flei1.png",
+        "selectedIconPath": "images/flei.png"
       },
       {
         "pagePath": "pages/shoppingcar/index",

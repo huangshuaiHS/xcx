@@ -57,7 +57,9 @@ Page({
     //分享
   },
   userInfoHandler:function(e){
-    
+    if(e.detail.userInfo == null || e.detail.userInfo == ""){
+      return;
+    }
     this.setData({
       userInfo:e.detail.userInfo,
       dengl:false

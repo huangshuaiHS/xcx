@@ -74,13 +74,13 @@ swiper-item image{
   padding:0 10px;
   width: 100%;
   text-align: center;
-  line-height: 40px;
+  line-height: 45px;
 }
 
 .swiper-tab-list {  
 font-size: 30rpx;
   display: inline-block;
-  width: 33.33%;
+  width: 50%;
   color: #777777;
 }
 

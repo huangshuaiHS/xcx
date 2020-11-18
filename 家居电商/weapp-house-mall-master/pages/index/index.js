@@ -14,10 +14,9 @@ Page({
     interval:0, //自动切换时间
     duration: 200,  //滑动时间
     clas:["action"],
+    show:true,
     goodsData:[{
                 title:"推荐"
-                },{
-                  title:"商品"
                 },{
                   title:"分类"
                 }
@@ -197,10 +196,11 @@ Page({
     this.setData({clas:data});
   },
 
+  //滑动监听事件
   bindChange: function( e ) {
 
     var that = this;
-    //that.setData( { currentTab: e.detail.current });
+    that.setData( { currentTab: e.detail.current });
 
 },
 
@@ -208,6 +208,8 @@ Page({
   swichNav: function( e ) {
 
     var that = this;
+    //当前页
+    var index = e.target.dataset.current;
     console.log(this.data.currentTab +" === " +e.target.dataset.current);
     
     if( this.data.currentTab === e.target.dataset.current ) {
@@ -217,8 +219,172 @@ Page({
             currentTab: e.target.dataset.current
         })
     }
+    //数据渲染
+    var bander,IndexList = [];
+    if(index == 0){
+
+
+      bander = [
+        {
+          cid:"0",
+          image:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2894050254,1298142909&fm=26&gp=0.jpg",
+        },
+        {
+          cid:"1",
+          image:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2949620428,436075594&fm=26&gp=0.jpg",
+        },
+        {
+          cid:"2",
+          image:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819687348,2126727518&fm=26&gp=0.jpg",
+        }
+      ]
+      IndexList = [
+        {
+          id:"0",
+          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2202773305,858084832&fm=11&gp=0.jpg",
+          title:"西瓜",
+          price:"5"
+        },
+        {
+          id:"1",
+          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=139113860,127951727&fm=26&gp=0.jpg",
+          title:"橙子",
+          price:"8"
+        },
+        {
+          id:"2",
+          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=282156732,749984537&fm=26&gp=0.jpg",
+          title:"草莓",
+          price:"15"
+        },
+        {
+          id:"3",
+          thumb:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2033652965,2723161418&fm=26&gp=0.jpg",
+          title:"苹果",
+          price:"8"
+        },
+        {
+          id:"4",
+          thumb:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2710632269,794544261&fm=26&gp=0.jpg",
+          title:"梨子",
+          price:"4"
+        },
+        {
+          id:"6",
+          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3355899357,2357718018&fm=11&gp=0.jpg",
+          title:"香蕉",
+          price:"7"
+        },
+        {
+          id:"7",
+          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2372429943,1502293666&fm=11&gp=0.jpg",
+          title:"芒果",
+          price:"12"
+        },
+        {
+          id:"8",
+          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=139113860,127951727&fm=26&gp=0.jpg",
+          title:"柠檬",
+          price:"8"
+        }
+      ]
+
+
+
+      that.setData( {
+        bander,
+        IndexList,
+        show:true
+      })
+
+    }else if(index == 1){
+
+      bander = [
+        {
+          cid:"0",
+          image:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2894050254,1298142909&fm=26&gp=0.jpg",
+        },
+        {
+          cid:"1",
+          image:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2949620428,436075594&fm=26&gp=0.jpg",
+        },
+        {
+          cid:"2",
+          image:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819687348,2126727518&fm=26&gp=0.jpg",
+        }
+      ];
+
+      that.setData( {
+        bander,
+        IndexList:[],
+        show:true
+      })
+      
+
+    }else{
+
+      IndexList = [
+        {
+          id:"0",
+          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2202773305,858084832&fm=11&gp=0.jpg",
+          title:"西瓜",
+          price:"5"
+        },
+        {
+          id:"1",
+          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=139113860,127951727&fm=26&gp=0.jpg",
+          title:"橙子",
+          price:"8"
+        },
+        {
+          id:"2",
+          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=282156732,749984537&fm=26&gp=0.jpg",
+          title:"草莓",
+          price:"15"
+        },
+        {
+          id:"3",
+          thumb:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2033652965,2723161418&fm=26&gp=0.jpg",
+          title:"苹果",
+          price:"8"
+        },
+        {
+          id:"4",
+          thumb:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2710632269,794544261&fm=26&gp=0.jpg",
+          title:"梨子",
+          price:"4"
+        },
+        {
+          id:"6",
+          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3355899357,2357718018&fm=11&gp=0.jpg",
+          title:"香蕉",
+          price:"7"
+        },
+        {
+          id:"7",
+          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2372429943,1502293666&fm=11&gp=0.jpg",
+          title:"芒果",
+          price:"12"
+        },
+        {
+          id:"8",
+          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=139113860,127951727&fm=26&gp=0.jpg",
+          title:"柠檬",
+          price:"8"
+        }
+      ]
+
+      that.setData( {
+        bander:[],
+        IndexList,
+        show:false
+      })
+
+    }
     
-    console.log(e.target.dataset.current);
+    
+    
+   
     
   },
   xun:function (e){

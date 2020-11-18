@@ -48,6 +48,7 @@
       
 </swiper>  -->
 
+
 <view class="swiper-tab">
     <block wx:for="{{goodsData}}">
         <view class="swiper-tab-list {{currentTab==index ? 'on' : ''}}" data-current="{{index}}" bindtap="swichNav">
@@ -56,10 +57,11 @@
     </block>
 </view>
 
+
 <swiper current="{{currentTab}}" style="height:{{winHeight - 42}}px" class="swiper-box" duration="300" bindchange="bindChange">
     <block wx:for="{{goodsData}}">
       <swiper-item data-id="{{item}}">
-            <view class="banner">
+            <view class="banner" wx:if="{{show}}">
                   <swiper indicator-dots="true" 
                   autoplay="true" interval="5000"  duration="1000" >
                         <block wx:for="{{bander}}" wx:key="index">

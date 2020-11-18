@@ -10,11 +10,6 @@ Page({
   },
  onLoad: function () {
     var that = this;
-    app.getUserInfo(function (userInfo){
-            that.setData({
-                  userInfo:userInfo
-              });
-    })
    
   },
   onShow:function(){
@@ -31,7 +26,37 @@ Page({
     //         }
     // });
     
-    that.setData({orderList:[wx.getStorageSync("ljgm")]});
+    // that.setData({
+    //   orderList:[wx.getStorageSync("ljgm")]
+    // });
+    var orderList = [
+      {
+        status:0,
+        code:123321,
+        goods:[
+          {
+            thumb:"../../images/dd.png"
+          }
+        ],
+        amount:100,
+        id:1
+    },
+    {
+      status:1,
+      code:1111222,
+      goods:[
+        {
+          thumb:"../../images/dd.png"
+        }
+      ],
+      amount:150,
+      id:2
+  }
+  ]
+  that.setData({
+      orderList
+   });
+
   },
   pay:function(e){
 
