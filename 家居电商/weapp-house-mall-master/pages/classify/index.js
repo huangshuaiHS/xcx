@@ -2,54 +2,58 @@ Page({
   data: {
     cateItems: [{
         cate_id: 1,
-        cate_name: "护肤",
+        cate_name: "苹果",
         ishaveChild: true,
         children: [{
           child_id: 1,
-          name: '洁面皂',
-          image: "../../images/dingdan.png"
+          name: '小苹果',
+          image: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1621431005,1388131397&fm=26&gp=0.jpg"
+        },{
+          child_id: 2,
+          name: '红苹果',
+          image: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2467399165,2458535836&fm=26&gp=0.jpg"
         }]
       },
       {
         cate_id: 2,
-        cate_name: "彩妆",
+        cate_name: "香蕉",
         ishaveChild: true,
         children: [{
             child_id: 1,
-            name: '气垫bb',
-            image: "../../images/dingdan.png"
+            name: '进口香蕉',
+            image: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2293980408,4239562480&fm=26&gp=0.jpg"
           },
           {
             child_id: 2,
-            name: '修容/高光',
-            image: "../../images/dingdan.png"
+            name: '一个香蕉',
+            image: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1748720342,2199604140&fm=26&gp=0.jpg"
           },
           {
             child_id: 3,
-            name: '遮瑕',
-            image: "../../images/dingdan.png"
+            name: '青香蕉',
+            image: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2841365665,36508706&fm=26&gp=0.jpg"
           }
         ]
       },
       {
         cate_id: 3,
-        cate_name: "香水/香氛",
+        cate_name: "西瓜",
         ishaveChild: true,
         children: [{
             child_id: 1,
-            name: '淡香水EDT',
-            image: "../../images/dingdan.png"
+            name: '半西瓜',
+            image: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3662167854,144343282&fm=26&gp=0.jpg"
           },
           {
             child_id: 2,
-            name: '浓香水EDP',
-            image: "../../images/dingdan.png"
+            name: '进口西瓜',
+            image: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1159913768,2283097008&fm=26&gp=0.jpg"
           }
         ]
       },
       {
         cate_id: 4,
-        cate_name: "个人护理",
+        cate_name: "葡萄",
         ishaveChild: false,
         children: []
       }
@@ -81,6 +85,13 @@ Page({
     this.setData({
       curNav: id,
       curIndex: index
+    })
+  },
+  xqy(){
+    wx.showToast({
+      title: '该功能开发中,敬请期待...',
+      icon: 'none',
+      duration: 1500
     })
   }
 })

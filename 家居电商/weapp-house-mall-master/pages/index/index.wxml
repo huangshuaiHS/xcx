@@ -49,44 +49,103 @@
 </swiper>  -->
 <!-- 数据加载 -->
 <loading hidden="{{loadingHidden}}">
-     数据加载中...
+      数据加载中...
 </loading>
 
 <view class="swiper-tab">
-    <block wx:for="{{goodsData}}" wx:key="title">
-        <view class="swiper-tab-list {{currentTab==index ? 'on' : ''}}" data-current="{{index}}" bindtap="swichNav">
-            {{item.title}}
-        </view>
-    </block>
+      <block wx:for="{{goodsData}}" wx:key="title">
+            <view class="swiper-tab-list {{currentTab==index ? 'on' : ''}}" data-current="{{index}}" bindtap="swichNav">
+                  {{item.title}}
+            </view>
+      </block>
 </view>
 
+<view bindtouchstart="touchStart" bindtouchend="touchEnd">
 
-<swiper current="{{currentTab}}" style="height:{{winHeight - 42}}px" class="swiper-box" duration="300" bindchange="bindChange">
-    <block wx:for="{{goodsData}}" wx:key="cid">
-      <swiper-item data-id="{{item}}">
-            <view class="banner" wx:if="{{show}}">
-                  <swiper indicator-dots="true" 
-                  autoplay="true" interval="5000"  duration="1000" >
-                        <block wx:for="{{bander}}" wx:key="index">
-                              <swiper-item>
-                                    <image mode="aspectFill" wx:if="{{item.cid != 0}}" src="{{item.image}}" bindtap="todetail" id="{{item.cid}}"/>
-                                    <image mode="aspectFill" wx:else src="{{item.image}}" id="{{item.cid}}"/>
-                              </swiper-item>
-                        </block>
-                  </swiper>
-            </view>
-            <view class="listMall" wx:if="{{hide}}">
-                  <block wx:for="{{IndexList}}" wx:key="index">
-                        <view bindtap="todetail" id="{{item.id}}" class="blocks">
-                        <view class="img"><image src="{{item.thumb}}" mode="aspectFill"/></view>
+      <swiper current="{{currentTab}}" style="height:{{winHeight - 42}}px" class="swiper-box" duration="300"
+            bindchange="bindChange" wx:if="{{show}}">
+            <block wx:for="{{goodsData}}" wx:key="cid">
+                  <swiper-item data-id="{{item}}">
+                        <view class="banner" wx:if="{{show}}">
+                              <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+                                    <block wx:for="{{bander}}" wx:key="index">
+                                          <swiper-item>
+                                                <image mode="aspectFill" wx:if="{{item.cid != 0}}" src="{{item.image}}"
+                                                      bindtap="todetail" id="{{item.cid}}" />
+                                                <image mode="aspectFill" wx:else src="{{item.image}}"
+                                                      id="{{item.cid}}" />
+                                          </swiper-item>
+                                    </block>
+                              </swiper>
+                        </view>
+                  </swiper-item>
+            </block>
+      </swiper>
+      <view class="listMall" wx:if="{{hide}}">
+            <block wx:for="{{IndexList}}" wx:key="index">
+                  <view bindtap="todetail" id="{{item.id}}" class="blocks">
+                        <view class="img">
+                              <image src="{{item.thumb}}" mode="aspectFill" />
+                        </view>
                         <view class="name">{{item.title}}</view>
                         <view>
                               <text class="now_price">￥{{item.price}}</text>
                         </view>
-                        </view> 
+                  </view>
+            </block>
+      </view>
+      <!--空白-->
+      <view class="separate"></view>
+      <!--index.wxml-->
+      <scroll-view wx:if="{{show}}">
+            <!--导航-->
+            <view class="ui-flex">
+                  <block wx:for="{{navs}}">
+                        <view class="nav-item" catchtap="hotClick" data-type="{{item.text}}">
+                              <image class="nav-img" src="{{item.icon}}"></image>
+                              <!-- <text class="nav-text">{{item.text}}</text> -->
+                        </view>
                   </block>
             </view>
-      </swiper-item>
-    </block>
-</swiper>
-	
+            <!--空白-->
+            <view class="separate"></view>
+            <view class="volume">
+                  <view class="category-title">
+                        <image class="small-icon-img" src="../../images/volume_small.png"></image>
+                        <text class="small-text">最热</text>
+                  </view>
+                  <image class="ui-width-100"
+                        src="https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00194-2752.jpg"
+                        bindtap="hotClick">
+                  </image>
+            </view>
+            <!--空白-->
+            <view class="separate"></view>
+
+            <!--最新-->
+            <view class="new">
+                  <view class="category-title">
+                        <image class="small-icon-img" src="../../images/new_small.png"></image>
+                        <text class="small-text">最新</text>
+                  </view>
+                  <image class="ui-width-100"
+                        src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1737736488,1570792513&fm=11&gp=0.jpg"
+                        bindtap="hotClick"></image>
+            </view>
+
+            <!--空白-->
+            <view class="separate"></view>
+
+            <!--最火-->
+            <view class="hot">
+                  <view class="category-title">
+                        <image class="small-icon-img" src="../../images/hot_small.png"></image>
+                        <text class="small-text">最火</text>
+                  </view>
+                  <image class="ui-width-100"
+                        src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3870055270,2691138016&fm=26&gp=0.jpg"
+                        bindtap="hotClick"></image>
+            </view>
+
+      </scroll-view>
+</view>
