@@ -1,26 +1,20 @@
 Page({
   data: {
-    cateItems: [
-      {
+    cateItems: [{
         cate_id: 1,
         cate_name: "护肤",
         ishaveChild: true,
-        children:
-        [
-          {
-            child_id: 1,
-            name: '洁面皂',
-            image: "../../images/dingdan.png"
-          }
-        ]
+        children: [{
+          child_id: 1,
+          name: '洁面皂',
+          image: "../../images/dingdan.png"
+        }]
       },
       {
         cate_id: 2,
         cate_name: "彩妆",
         ishaveChild: true,
-        children:
-        [
-          {
+        children: [{
             child_id: 1,
             name: '气垫bb',
             image: "../../images/dingdan.png"
@@ -41,9 +35,7 @@ Page({
         cate_id: 3,
         cate_name: "香水/香氛",
         ishaveChild: true,
-        children:
-        [
-          {
+        children: [{
             child_id: 1,
             name: '淡香水EDT',
             image: "../../images/dingdan.png"
@@ -65,6 +57,20 @@ Page({
     curNav: 1,
     curIndex: 0
   },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    console.log('商品分类下拉刷新?')
+    // 显示标题栏进度条效果
+    wx.showNavigationBarLoading();
+    setTimeout(function () {
+      //关闭下拉刷新
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh();
+    }, 1000);
+    // 取消页面刷新动画
+  },
 
   //事件处理函数  
   switchRightTab: function (e) {
@@ -77,4 +83,4 @@ Page({
       curIndex: index
     })
   }
-})  
+})

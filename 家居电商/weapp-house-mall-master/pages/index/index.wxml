@@ -47,10 +47,13 @@
       </block>
       
 </swiper>  -->
-
+<!-- 数据加载 -->
+<loading hidden="{{loadingHidden}}">
+     数据加载中...
+</loading>
 
 <view class="swiper-tab">
-    <block wx:for="{{goodsData}}">
+    <block wx:for="{{goodsData}}" wx:key="title">
         <view class="swiper-tab-list {{currentTab==index ? 'on' : ''}}" data-current="{{index}}" bindtap="swichNav">
             {{item.title}}
         </view>
@@ -59,7 +62,7 @@
 
 
 <swiper current="{{currentTab}}" style="height:{{winHeight - 42}}px" class="swiper-box" duration="300" bindchange="bindChange">
-    <block wx:for="{{goodsData}}">
+    <block wx:for="{{goodsData}}" wx:key="cid">
       <swiper-item data-id="{{item}}">
             <view class="banner" wx:if="{{show}}">
                   <swiper indicator-dots="true" 
@@ -72,7 +75,7 @@
                         </block>
                   </swiper>
             </view>
-            <view class="listMall">
+            <view class="listMall" wx:if="{{hide}}">
                   <block wx:for="{{IndexList}}" wx:key="index">
                         <view bindtap="todetail" id="{{item.id}}" class="blocks">
                         <view class="img"><image src="{{item.thumb}}" mode="aspectFill"/></view>

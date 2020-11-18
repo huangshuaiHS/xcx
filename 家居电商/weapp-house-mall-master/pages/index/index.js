@@ -14,11 +14,13 @@ Page({
     interval:0, //自动切换时间
     duration: 200,  //滑动时间
     clas:["action"],
-    show:true,
+    show:true,//控制是否显示
+    hide:false,//控制是否显示
+    loadingHidden:false,
     goodsData:[{
-                title:"推荐"
+                title:"今日推荐"
                 },{
-                  title:"分类"
+                title:"限时优惠"
                 }
               ],
     bander:[
@@ -86,6 +88,11 @@ Page({
       }
     ]
   },
+  onReady:function(){
+    this.setData({
+      loadingHidden:true
+    })
+  },
   onLoad:function(){
 
 
@@ -104,43 +111,20 @@ Page({
         that.setData({
           bander:that.data.bander
         });
-      that.getGoodsList("",'1,2',function(list){
-        console.log(2)
-          that.setData({
-            //IndexList:list
-            IndexList:that.data.IndexList
-          });
-      })
+      that.setData({
+        //IndexList:list
+        IndexList:that.data.IndexList
+      });
 
     
   },
   onShow:function(){
   
-        sta();
-        app.getAppInfo(
-          function (appInfo){
-                wx.setNavigationBarTitle({
-                  title: appInfo.title
-                })
-            }
-        );
+       
         
   },
   getGoodsType:function(){
-        var that = this;
-        //var data = {appid:config.APPID,userid:this.data.userInfo.id}
-        // http.httpGet("?c=type&a=getTypeList" ,data,function(res){
-        //     if(res.code == '200' && res.msg == 'success'){
-        //         var list = res.data.list;
-        //         var goodsData = [{type:0,title:"全部"}];
-        //         for(var i=1;i<list.length+1;i++){
-        //             goodsData[i]= {type:list[i-1].id,title:list[i-1].typename};
-        //         }
-        //         that.setData({goodsData:goodsData});
-        //         that.loadTabGoodsList(0);
-                 
-        //     }
-        // });
+        
   },
   getGoodsList:function(type,status,callback){
         var that = this;
@@ -196,16 +180,44 @@ Page({
     this.setData({clas:data});
   },
 
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+    console.log('首页下拉刷新?')
+    // 显示标题栏进度条效果
+    wx.showNavigationBarLoading();
+    setTimeout(function(){
+      //关闭下拉刷新
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh();
+    },1000);
+    // 取消页面刷新动画
+  },
+
+
   //滑动监听事件
   bindChange: function( e ) {
 
     var that = this;
-    that.setData( { currentTab: e.detail.current });
-
+    var index = e.detail.current;
+    that.setData( { currentTab: index});
+    //数据渲染
+    if(index == 0){
+      that.setData( {
+        show:true,
+        hide:false
+      })
+    }else if(index == 1){
+      that.setData( {
+        show:false,
+        hide:true
+      })
+    }
 },
 
   //  tab切换逻辑
-  swichNav: function( e ) {
+  swichNav: function(e) {
 
     var that = this;
     //当前页
@@ -220,172 +232,19 @@ Page({
         })
     }
     //数据渲染
-    var bander,IndexList = [];
     if(index == 0){
-
-
-      bander = [
-        {
-          cid:"0",
-          image:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2894050254,1298142909&fm=26&gp=0.jpg",
-        },
-        {
-          cid:"1",
-          image:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2949620428,436075594&fm=26&gp=0.jpg",
-        },
-        {
-          cid:"2",
-          image:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819687348,2126727518&fm=26&gp=0.jpg",
-        }
-      ]
-      IndexList = [
-        {
-          id:"0",
-          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2202773305,858084832&fm=11&gp=0.jpg",
-          title:"西瓜",
-          price:"5"
-        },
-        {
-          id:"1",
-          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=139113860,127951727&fm=26&gp=0.jpg",
-          title:"橙子",
-          price:"8"
-        },
-        {
-          id:"2",
-          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=282156732,749984537&fm=26&gp=0.jpg",
-          title:"草莓",
-          price:"15"
-        },
-        {
-          id:"3",
-          thumb:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2033652965,2723161418&fm=26&gp=0.jpg",
-          title:"苹果",
-          price:"8"
-        },
-        {
-          id:"4",
-          thumb:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2710632269,794544261&fm=26&gp=0.jpg",
-          title:"梨子",
-          price:"4"
-        },
-        {
-          id:"6",
-          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3355899357,2357718018&fm=11&gp=0.jpg",
-          title:"香蕉",
-          price:"7"
-        },
-        {
-          id:"7",
-          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2372429943,1502293666&fm=11&gp=0.jpg",
-          title:"芒果",
-          price:"12"
-        },
-        {
-          id:"8",
-          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=139113860,127951727&fm=26&gp=0.jpg",
-          title:"柠檬",
-          price:"8"
-        }
-      ]
-
-
-
-      that.setData( {
-        bander,
-        IndexList,
-        show:true
+      that.setData({
+        show:true,
+        hide:false
       })
-
     }else if(index == 1){
-
-      bander = [
-        {
-          cid:"0",
-          image:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2894050254,1298142909&fm=26&gp=0.jpg",
-        },
-        {
-          cid:"1",
-          image:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2949620428,436075594&fm=26&gp=0.jpg",
-        },
-        {
-          cid:"2",
-          image:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819687348,2126727518&fm=26&gp=0.jpg",
-        }
-      ];
-
       that.setData( {
-        bander,
-        IndexList:[],
-        show:true
+        show:false,
+        hide:true
       })
-      
-
-    }else{
-
-      IndexList = [
-        {
-          id:"0",
-          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2202773305,858084832&fm=11&gp=0.jpg",
-          title:"西瓜",
-          price:"5"
-        },
-        {
-          id:"1",
-          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=139113860,127951727&fm=26&gp=0.jpg",
-          title:"橙子",
-          price:"8"
-        },
-        {
-          id:"2",
-          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=282156732,749984537&fm=26&gp=0.jpg",
-          title:"草莓",
-          price:"15"
-        },
-        {
-          id:"3",
-          thumb:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2033652965,2723161418&fm=26&gp=0.jpg",
-          title:"苹果",
-          price:"8"
-        },
-        {
-          id:"4",
-          thumb:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2710632269,794544261&fm=26&gp=0.jpg",
-          title:"梨子",
-          price:"4"
-        },
-        {
-          id:"6",
-          thumb:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3355899357,2357718018&fm=11&gp=0.jpg",
-          title:"香蕉",
-          price:"7"
-        },
-        {
-          id:"7",
-          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2372429943,1502293666&fm=11&gp=0.jpg",
-          title:"芒果",
-          price:"12"
-        },
-        {
-          id:"8",
-          thumb:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=139113860,127951727&fm=26&gp=0.jpg",
-          title:"柠檬",
-          price:"8"
-        }
-      ]
-
-      that.setData( {
-        bander:[],
-        IndexList,
-        show:false
-      })
-
     }
     
-    
-    
-   
-    
+  
   },
   xun:function (e){
     console.log(e)
@@ -408,10 +267,7 @@ Page({
             // complete
           }
       })
-  },
-  //处理分页
-  bindlower:function(e){
-    
   }
+
   
 })

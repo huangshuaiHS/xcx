@@ -10,6 +10,12 @@ button{
 .mini-btn{
   margin-right: 10rpx;
 }
+button[type=primary][plain] {
+  color: #F5B223;
+  border: 1px solid #F5B223;
+  background-color: transparent;
+}
+
 .user-head {
   background:#fff;
   height:250px;

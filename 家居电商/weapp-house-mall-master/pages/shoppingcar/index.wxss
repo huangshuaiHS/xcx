@@ -138,3 +138,7 @@ scroll-view{
   color:#666;
   margin-top: 50rpx;
 }
+.mysp{
+  width: 100px;
+  height: 100px;
+}

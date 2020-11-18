@@ -7,6 +7,20 @@ Page({
     userInfo: null,
     dengl:true
   },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+    console.log('个人中心下拉刷新?')
+    // 显示标题栏进度条效果
+    wx.showNavigationBarLoading();
+    setTimeout(function(){
+      //关闭下拉刷新
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh();
+    },1000);
+    // 取消页面刷新动画
+  },
   onShow:function (){
     var that = this
     sta();
