@@ -60,7 +60,7 @@
       </block>
 </view>
 
-<view bindtouchstart="touchStart" bindtouchend="touchEnd">
+<view bindtouchstart="touchStart" bindtouchend="touchEnd" style="height: 100%;overflow-x: hidden;">
 
       <swiper current="{{currentTab}}" style="height:{{winHeight - 42}}px" class="swiper-box" duration="300"
             bindchange="bindChange" wx:if="{{show}}">
