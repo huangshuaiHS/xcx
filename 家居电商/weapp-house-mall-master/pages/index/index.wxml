@@ -60,27 +60,28 @@
       </block>
 </view>
 
-<view bindtouchstart="touchStart" bindtouchend="touchEnd" style="height: 100%;overflow-x: hidden;">
 
-      <swiper current="{{currentTab}}" style="height:{{winHeight - 42}}px" class="swiper-box" duration="300"
-            bindchange="bindChange" wx:if="{{show}}">
-            <block wx:for="{{goodsData}}" wx:key="cid">
-                  <swiper-item data-id="{{item}}">
-                        <view class="banner" wx:if="{{show}}">
-                              <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000">
-                                    <block wx:for="{{bander}}" wx:key="index">
-                                          <swiper-item>
-                                                <image mode="aspectFill" wx:if="{{item.cid != 0}}" src="{{item.image}}"
-                                                      bindtap="todetail" id="{{item.cid}}" />
-                                                <image mode="aspectFill" wx:else src="{{item.image}}"
-                                                      id="{{item.cid}}" />
-                                          </swiper-item>
-                                    </block>
-                              </swiper>
-                        </view>
-                  </swiper-item>
-            </block>
-      </swiper>
+<swiper current="{{currentTab}}" style="height:{{winHeight - 42}}px" class="swiper-box" duration="300"
+      bindchange="bindChange" wx:if="{{show}}">
+      <block wx:for="{{goodsData}}" wx:key="cid">
+            <swiper-item data-id="{{item}}">
+                  <view class="banner" wx:if="{{show}}">
+                        <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+                              <block wx:for="{{bander}}" wx:key="index">
+                                    <swiper-item>
+                                          <image mode="aspectFill" wx:if="{{item.cid != 0}}" src="{{item.image}}"
+                                                bindtap="todetail" id="{{item.cid}}" />
+                                          <image mode="aspectFill" wx:else src="{{item.image}}"
+                                                id="{{item.cid}}" />
+                                    </swiper-item>
+                              </block>
+                        </swiper>
+                  </view>
+            </swiper-item>
+      </block>
+</swiper>
+<view bindtouchstart="touchStart" bindtouchend="touchEnd">
+
       <view class="listMall" wx:if="{{hide}}">
             <block wx:for="{{IndexList}}" wx:key="index">
                   <view bindtap="todetail" id="{{item.id}}" class="blocks">

@@ -50,12 +50,28 @@
 .xian2{
   background: #fff;
 }
-.toAddress{
-    color: 9e9e9e;
-    background: #fff;
-    font-size: 18px;
-    padding: 15px;
+
+.toAddress .item{
+  padding:20px 15px;
+  font-size: 14px;
+  color:#333;
+  position: relative;
+  border-bottom: 1px solid #f3f3f3;
 }
+.toAddress .item image {
+  width:20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align:middle;
+  margin-right:5px;
+}
+.toAddress .item .jump{
+  position: absolute;
+  right:20px;
+  color:#999;
+}
+
+
 .box{
     margin-top:10px;
 }
