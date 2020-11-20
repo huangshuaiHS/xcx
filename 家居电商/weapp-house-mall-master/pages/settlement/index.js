@@ -9,8 +9,7 @@ Page({
   data: {
     allGoods: {},
     sumPrice: 0,
-    address: '',
-    fkm:false
+    address: ''
   },
   onLoad: function () {
     var that = this;
@@ -218,9 +217,22 @@ Page({
                 duration: 1000
             });*/
             //此处写支付
+           
+
 
           }
         });
+        wx.requestPayment(
+          {
+          'timeStamp': '',
+          'nonceStr': '',
+          'package': '',
+          'signType': 'MD5',
+          'paySign': '',
+          'success':function(res){},
+          'fail':function(res){},
+          'complete':function(res){}
+          })
       wx.showToast({
         title: '请等待...',
         icon: 'loading',
@@ -230,13 +242,7 @@ Page({
       //清除立即购买
       wx.setStorageSync('ljgm', '');
 
-      that.setData({
-        fkm:true
-      })
-      wx.previewImage({
-        current: '../../images/fkm.jpg', // 当前显示图片的http链接
-        urls: ["../../images/fkm.jpg"] // 需要预览的图片http链接列表
-      })
+    
     }, 500) //延迟时间 这里是1秒
 
   }

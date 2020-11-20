@@ -46,6 +46,3 @@
 <!-- <button class="pay-button" open-type='contact' show-message-card='true' send-message-img='../../images/fkm.jpg' >
    微信付款
  </button> -->
-<view wx:if="{{fkm}}">
-  <image src="../../images/fkm.jpg"></image>
-</view>
