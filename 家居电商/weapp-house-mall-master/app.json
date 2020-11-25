@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/dt/dt",
     "pages/index/index",
     "pages/classify/index",
     "pages/detail/index",
@@ -60,5 +61,12 @@
     "uploadFile": 10000,
     "downloadFile": 10000
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "subway": {
+      "version": "1.0.9",
+      "provider": "wx6aaf93c4435fa1c1"
+    }
+  }
+  
 }
